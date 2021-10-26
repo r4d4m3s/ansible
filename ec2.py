@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/python
 
 '''
 EC2 external inventory script
@@ -135,7 +135,7 @@ from boto import route53
 from boto import sts
 import six
 
-from ansible.module_utils import ec2 as ec2_utils
+#from ansible.module_utils import ec2 as ec2_utils
 
 HAS_BOTO3 = False
 try:
@@ -999,7 +999,7 @@ class Ec2Inventory(object):
         self.push(self.inventory, 'ec2', hostname)
 
         self.inventory["_meta"]["hostvars"][hostname] = self.get_host_info_dict_from_instance(instance)
-        self.inventory["_meta"]["hostvars"][hostname]['ansible_host'] = dest
+        self.inventory["_meta"]["hostvars"][hostname]['ansible_ssh_host'] = dest
 
     def add_rds_instance(self, instance, region):
         ''' Adds an RDS instance to the inventory and index, as long as it is
@@ -1096,7 +1096,7 @@ class Ec2Inventory(object):
         self.push(self.inventory, 'rds', hostname)
 
         self.inventory["_meta"]["hostvars"][hostname] = self.get_host_info_dict_from_instance(instance)
-        self.inventory["_meta"]["hostvars"][hostname]['ansible_host'] = dest
+        self.inventory["_meta"]["hostvars"][hostname]['ansible_ssh_host'] = dest
 
     def add_elasticache_cluster(self, cluster, region):
         ''' Adds an ElastiCache cluster to the inventory and index, as long as
