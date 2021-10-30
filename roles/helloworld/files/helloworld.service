@@ -1,0 +1,14 @@
+[Unit]
+Description=This is Hello World
+After=network.target 
+
+[Service]
+User=ec2-user
+ExecStart=/usr/bin/node /home/ec2-user/helloworld.js 
+ExecReload=/bin/kill -9 $MAINPID
+ExecReload=/bin/kill -HUP $MAINPID
+KillMode=process
+
+[Install]
+WantedBy=multi-user.target
+

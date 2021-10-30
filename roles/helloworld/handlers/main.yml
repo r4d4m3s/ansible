@@ -1,0 +1,20 @@
+---
+# handlers file for helloworld
+
+- name: Enable service helloworld and ensure it is not masked
+  ansible.builtin.systemd:
+    name: helloworld
+    enabled: yes
+    daemon_reload: yes
+
+- name: restart helloworld 
+#- name: Starting the HelloWorld node service
+  ansible.builtin.systemd:
+    state: started
+    name: helloworld
+
+
+#- name: restart helloworld 
+#  service:
+#    name: helloworld
+#    state: restarted

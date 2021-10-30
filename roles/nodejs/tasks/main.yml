@@ -1,0 +1,25 @@
+---
+# tasks file for nodejs
+
+- name: Add repository
+  ansible.builtin.command: amazon-linux-extras install epel -y
+  #become: yes
+
+- name: Installing node and npm
+  ansible.builtin.command: sudo yum install -y nodejs
+
+
+
+#- name: Add repository
+#  yum_repository:
+#    name: epel
+#    description: EPEL YUM repo
+#    baseurl: https://download.fedoraproject.org/pub/epel/$releasever/$basearch/
+
+#- name: Installing node and npm
+#  yum:
+#    name: 
+#      - nodejs
+#      - npm
+#  #enablerepo: epel
+#  state: installed 

@@ -1,0 +1,31 @@
+---
+# tasks file for helloworld
+
+- name: Copying the application file 
+  copy: 
+    src: helloworld.js 
+    dest: /home/ec2-user/ 
+    owner: ec2-user 
+    group: ec2-user 
+    mode: 0644 
+  notify: restart helloworld 
+
+- name: Copying the unit service file
+  copy:
+    src: helloworld.service
+    dest: /usr/lib/systemd/system/helloworld.service
+    owner: root
+    group: root
+    mode: 0644
+
+#- name: Enable service helloworld and ensure it is not masked
+#  ansible.builtin.systemd:
+#    name: helloworld
+#    enabled: yes
+#    daemon_reload: yes
+#    masked: no
+
+#- name: Starting the HelloWorld node service
+#  ansible.builtin.systemd:
+#    state: started
+#    name: helloworld
